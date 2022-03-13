@@ -1,6 +1,6 @@
 class OneCallModel {
-  double? lat;
-  double? lon;
+  num? lat;
+  num? lon;
   String? timezone;
   int? timezoneOffset;
   Current? current;
@@ -60,17 +60,17 @@ class Current {
   int? dt;
   int? sunrise;
   int? sunset;
-  double? temp;
-  double? feelsLike;
+  num? temp;
+  num? feelsLike;
   int? pressure;
   int? humidity;
-  double? dewPoint;
-  double? uvi;
+  num? dewPoint;
+  num? uvi;
   int? clouds;
   int? visibility;
-  double? windSpeed;
+  num? windSpeed;
   int? windDeg;
-  double? windGust;
+  num? windGust;
   List<Weather>? weather;
 
   Current(
@@ -163,17 +163,17 @@ class Weather {
 
 class Hourly {
   int? dt;
-  double? temp;
-  double? feelsLike;
+  num? temp;
+  num? feelsLike;
   int? pressure;
   int? humidity;
-  double? dewPoint;
-  double? uvi;
+  num? dewPoint;
+  num? uvi;
   int? clouds;
   int? visibility;
-  double? windSpeed;
+  num? windSpeed;
   int? windDeg;
-  double? windGust;
+  num? windGust;
   List<Weather>? weather;
   int? pop;
 
@@ -243,19 +243,19 @@ class Daily {
   int? sunset;
   int? moonrise;
   int? moonset;
-  double? moonPhase;
+  num? moonPhase;
   Temp? temp;
   FeelsLike? feelsLike;
   int? pressure;
   int? humidity;
-  double? dewPoint;
-  double? windSpeed;
+  num? dewPoint;
+  num? windSpeed;
   int? windDeg;
-  double? windGust;
+  num? windGust;
   List<Weather>? weather;
   int? clouds;
   int? pop;
-  double? uvi;
+  num? uvi;
 
   Daily(
       {this.dt,
@@ -336,12 +336,12 @@ class Daily {
 }
 
 class Temp {
-  double? day;
-  double? min;
-  double? max;
-  double? night;
-  double? eve;
-  double? morn;
+  num? day;
+  num? min;
+  num? max;
+  num? night;
+  num? eve;
+  num? morn;
 
   Temp({this.day, this.min, this.max, this.night, this.eve, this.morn});
 
@@ -367,10 +367,10 @@ class Temp {
 }
 
 class FeelsLike {
-  double? day;
-  double? night;
-  double? eve;
-  double? morn;
+  num? day;
+  num? night;
+  num? eve;
+  num? morn;
 
   FeelsLike({this.day, this.night, this.eve, this.morn});
 

@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intl/intl.dart';
+import 'package:weather/common/constants.dart';
+import 'package:weather/data/models/one_call_model.dart';
 import 'package:weather/ui/theme/app_colors.dart';
 
 class UpcomingWeatherCard extends StatelessWidget {
-  const UpcomingWeatherCard({Key? key}) : super(key: key);
+  const UpcomingWeatherCard({
+    Key? key,
+    required this.data,
+    required this.index,
+  }) : super(key: key);
+  final Daily data;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -14,28 +23,12 @@ class UpcomingWeatherCard extends StatelessWidget {
       width: 145.w,
       child: Stack(
         children: [
-          // Align(
-          //   alignment: Alignment.bottomCenter,
-          //   child: Container(
-          //     height: 28.h,
-          //     width: 80.w,
-          //     decoration: const BoxDecoration(
-          //       boxShadow: [
-          //         BoxShadow(
-          //           color: AppColors.turqouise,
-          //           offset: Offset(0, 4),
-          //           blurRadius: 15,
-          //         ),
-          //       ],
-          //     ),
-          //   ),
-          // ),
           Container(
             height: 220.h,
             width: 128.w,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(23),
-              color: AppColors.turqouise,
+              color: AppColors.next[index],
             ),
             child: Stack(
               children: [
@@ -52,7 +45,21 @@ class UpcomingWeatherCard extends StatelessWidget {
                     children: [
                       const SizedBox(),
                       Text(
-                        "Monday",
+                        index == 1
+                            ? "Monday"
+                            : index == 2
+                                ? "Tuesday"
+                                : index == 3
+                                    ? "Wednesday"
+                                    : index == 4
+                                        ? "Thursday"
+                                        : index == 5
+                                            ? "Friday"
+                                            : index == 6
+                                                ? "Saturday"
+                                                : index == 7
+                                                    ? "Sunday"
+                                                    : "Monday",
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 14.sp,
@@ -60,10 +67,20 @@ class UpcomingWeatherCard extends StatelessWidget {
                         ),
                       ),
                       SvgPicture.asset(
-                        "assets/svgs/sunny.svg",
+                        data.weather!.first.main == "Clear"
+                            ? "assets/svgs/sunny.svg"
+                            : data.weather!.first.main == "Thunderstorm"
+                                ? "assets/svgs/storm.svg"
+                                : data.weather!.first.main == "Drizzle"
+                                    ? "assets/svgs/rain.svg"
+                                    : data.weather!.first.main == "Snow"
+                                        ? "assets/svgs/rain.svg"
+                                        : "assets/svgs/cloud_lower.svg",
+                        height: 40.h,
+                        width: 30.w,
                       ),
                       Text(
-                        "40 °",
+                        "${data.temp!.day} °",
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 27.sp,
@@ -72,9 +89,8 @@ class UpcomingWeatherCard extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          // Pressure
                           Text(
-                            "56°",
+                            "${data.temp!.morn}°",
                             style: TextStyle(
                               color: Colors.white.withOpacity(0.50),
                               fontSize: 14.sp,
@@ -84,9 +100,8 @@ class UpcomingWeatherCard extends StatelessWidget {
                           SizedBox(
                             width: 16.w,
                           ),
-                          //Humidity
                           Text(
-                            "69°",
+                            "${data.temp!.eve}°",
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 14.sp,

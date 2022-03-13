@@ -6,7 +6,5 @@ import 'package:weather/data/data/repository/remote_data_repository.dart';
 import 'package:weather/weather_app.dart';
 
 void main() {
-  RemoteDataProvider remoteData = RemoteDataProvider();
-  remoteData.getWeatherData(18.6425, 73.7645);
   runApp(const WeatherApp());
 }

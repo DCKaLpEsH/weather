@@ -17,6 +17,9 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
     bool? isServiceEnabled;
     final l.Location location = l.Location();
     if (event is LocationRequestedEvent) {
+      if (await location.serviceEnabled() == false) {
+        emit(LocationRequestedState());
+      }
       return emit(
         LocationFetchState(
           position: await _determinePosition(),

@@ -10,7 +10,7 @@ abstract class CurrentWeatherState extends Equatable {
 class CurrentWeatherLoadingState extends CurrentWeatherState {}
 
 class CurrentWeatherReceivedState extends CurrentWeatherState {
-  final CurrentWeatherResponse currentWeather;
+  final OneCallModel currentWeather;
 
   const CurrentWeatherReceivedState({required this.currentWeather});
 

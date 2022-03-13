@@ -19,7 +19,7 @@ class RemoteDataProvider {
 
   Future<String> getWeatherData(double latitude, double longitude) async {
     final url = Uri.parse(
-        "https://api.openweathermap.org/data/2.5/onecall?lat=$latitude&lon=$longitude&exclude=minutely&appid=${Constants.apiKey}");
+        "https://api.openweathermap.org/data/2.5/onecall?lat=$latitude&lon=$longitude&exclude=minutely&units=metric&appid=${Constants.apiKey}");
     final response = await http.get(url);
     print("ONE CALL : ${response.body}");
     if (response.statusCode == 200) {

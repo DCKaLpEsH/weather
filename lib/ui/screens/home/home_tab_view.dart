@@ -118,10 +118,10 @@ class _HomeTabViewState extends State<HomeTabView>
                 ),
               ),
               WeatherCardCollapsed(
-                temperature: state.currentWeather.main!.temp.toString(),
-                humidity: state.currentWeather.main!.humidity.toString(),
-                weatherType:
-                    state.currentWeather.weather!.first.main.toString(),
+                temperature: state.currentWeather.current!.temp.toString(),
+                humidity: state.currentWeather.current!.humidity.toString(),
+                weatherType: state.currentWeather.current!.weather!.first.main
+                    .toString(),
               ),
               SizedBox(
                 height: 10.h,
@@ -131,7 +131,7 @@ class _HomeTabViewState extends State<HomeTabView>
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20.w),
                   child: Text(
-                    "Next 15 Days",
+                    "Next 7 Days",
                     style: TextStyle(
                       color: AppColors.textColor,
                       fontSize: 19.sp,
@@ -148,10 +148,13 @@ class _HomeTabViewState extends State<HomeTabView>
                 // width: double.infinity,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: 15,
+                  itemCount: state.currentWeather.daily!.length,
                   padding: EdgeInsets.only(left: 20.w),
                   itemBuilder: (context, index) {
-                    return const UpcomingWeatherCard();
+                    return UpcomingWeatherCard(
+                      data: state.currentWeather.daily![index],
+                      index: index + 1,
+                    );
                   },
                   // shrinkWrap: true,
                 ),
